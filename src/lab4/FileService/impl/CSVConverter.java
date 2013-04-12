@@ -9,6 +9,9 @@ import lab4.FileService.FileFormatStrategy;
  */
 public class CSVConverter implements FileFormatStrategy<String, String[]>{
     
+    private static final char COL_DELIMITER = ',';
+    private static final String COL_DELIMITER_STR = ",";
+    
     public CSVConverter(){
     }
     
@@ -22,7 +25,7 @@ public class CSVConverter implements FileFormatStrategy<String, String[]>{
             sb = new StringBuilder();
             for(int i = 0; i < lineCSVData.length; i++) {
                 sb.append(lineCSVData[i]);
-                if(i != lineCSVData.length - 1) sb.append(",");
+                if(i != lineCSVData.length - 1) sb.append(COL_DELIMITER);
             }
             encodedLines.add(sb.toString());
         }
@@ -43,12 +46,10 @@ public class CSVConverter implements FileFormatStrategy<String, String[]>{
         List<String[]> fileLineData = new ArrayList<String[]>();
         
         for (String line : data) {
-            lineData = line.split(",");
+            lineData = line.split(COL_DELIMITER_STR);//String.valueOf(COL_DELIMITER));//<-- would be preformed -a lot-, just give it a var
             fileLineData.add(lineData);
         }
         
         return fileLineData;
     }
-    
-
 }
