@@ -26,6 +26,7 @@ public class TextFileWriter implements FileWriterStrategy {
     @Override
     public boolean writeFile(List objects) throws IOException {
         //needs validation...
+        //System.out.println("objects = " + objects);//debug
         PrintWriter out = new PrintWriter(
                 new BufferedWriter(
                 new FileWriter(filePath, append)));

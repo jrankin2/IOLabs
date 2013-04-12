@@ -23,11 +23,11 @@ public class CSVConverter implements FileFormatStrategy<String, String[]>{
             for(int i = 0; i < lineCSVData.length; i++) {
                 sb.append(lineCSVData[i]);
                 if(i != lineCSVData.length - 1) sb.append(",");
-                
             }
+            encodedLines.add(sb.toString());
         }
         
-        return null;
+        return encodedLines;
     }
     
     /**
@@ -42,8 +42,8 @@ public class CSVConverter implements FileFormatStrategy<String, String[]>{
         String lineData[];
         List<String[]> fileLineData = new ArrayList<String[]>();
         
-        for (Object line : data) {
-            lineData = ((String)line).split(",");
+        for (String line : data) {
+            lineData = line.split(",");
             fileLineData.add(lineData);
         }
         

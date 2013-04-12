@@ -6,6 +6,7 @@ package lab4;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lab4.FileService.*;
 import lab4.FileService.impl.*;
@@ -26,8 +27,13 @@ public class Startup {
         
         FileService fs = new FileService(tfr, tfw, csvc, csvc);
         try{
-            fs.writeFile(lines);
-            System.out.println(fs.readFile());
+            if(fs.writeFile(lines)){//if writing was successful
+                List<String[]> csvData = fs.readFile();
+                for (String[] row : csvData) {
+                    System.out.println(Arrays.toString(row));
+                }
+            }
+            
         } catch(IOException ioe){
             System.out.println("IOException occurred while reading/writing file:" + ioe.getMessage());
         }
