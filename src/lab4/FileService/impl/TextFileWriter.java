@@ -33,7 +33,7 @@ public class TextFileWriter implements FileWriterStrategy {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < objects.size(); i++) {
             sb.append(objects.get(i));
-            if(i != objects.size()-1) sb.append("\n");
+            if(i != objects.size()-1) sb.append("\n");//if not last line, add a new one
         }
         out.println(sb.toString());
         out.close();

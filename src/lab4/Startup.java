@@ -18,22 +18,19 @@ public class Startup {
     
     public static void main(String[] args) {
         FileReaderStrategy tfr = new TextFileReader("src/fsTest.txt");
-        FileWriterStrategy tfw = new TextFileWriter("src/fsTest.txt", true);
+        FileWriterStrategy tfw = new TextFileWriter("src/fsTest.txt", false);
+        CSVConverter csvc = new CSVConverter();
+        List<String[]> lines = new ArrayList<String[]>();
+        lines.add(new String[] {"hello", "world"});
+        lines.add(new String[] {"world", "hello"});
         
-        List lines = new ArrayList();
-        lines.add("hello");
-        lines.add("world");
-        
-        FileService fs = new FileService(tfr, tfw, null, null);
+        FileService fs = new FileService(tfr, tfw, csvc, csvc);
         try{
             fs.writeFile(lines);
             System.out.println(fs.readFile());
         } catch(IOException ioe){
-            System.out.println("ioe = " + ioe.getMessage());
+            System.out.println("IOException occurred while reading/writing file:" + ioe.getMessage());
         }
-        
-        
-        
         
     }
     

@@ -29,12 +29,14 @@ public class FileService {
     }
     
     public boolean writeFile(List objects) throws IOException{
-        return fileWriter.writeFile(objects);
+        List<String> encodedLines = fileWriterFormat.encode(objects);
+        return fileWriter.writeFile(encodedLines);
     }
     
     
-    public Object readFile() throws IOException{
-        return fileReader.readFile();
+    public List readFile() throws IOException{
+        List<String> fileLines = fileReader.readFile();
+        return fileReaderFormat.decode(fileLines);
     }
     
     public static void main(String[] args) {
