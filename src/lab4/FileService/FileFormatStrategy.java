@@ -8,17 +8,16 @@ import java.util.List;
  */
 public interface FileFormatStrategy<EncodedObject, DecodedObject> {
     /**
-     * Takes a List of DecodedObjects and encodes it to a list of EncodedObjects.
-     * @param data object to encode
-     * @return list of file lines
+     * Takes a List of DecodedObjects and encodes it to a List of EncodedObjects.
+     * @param data List of DecodedObjects to encode
+     * @return List of EncodedObjects (e.g. Strings in the case of file handling)
      */
     public abstract List<EncodedObject> encode(List<DecodedObject> data);//
     
     /**
-     * Takes a List of line data and decodes it to an object.
-     * @param data file lines
-     * @return object with decoded data in it. See implementation documentation<br>
-     * for more details about what is returned.
+     * Takes a List EncodedObjects and decodes it to a List of DecodedObjects.
+     * @param data List of EncodedObjects to decode
+     * @return List of DecodedObjects
      */
     public abstract List<DecodedObject> decode(List<EncodedObject> data);
 }

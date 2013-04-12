@@ -34,11 +34,10 @@ public class CSVConverter implements FileFormatStrategy<String, String[]>{
     }
     
     /**
-     * Decode a List containing CSV records (file lines) into a list of Strings.
-     * **Don't know if I should use List<String> for data param...
+     * Decode a List containing CSV records (file lines) into a list of String[]s.
      * 
-     * @param data list containing file lines
-     * @return List<String[]> containing CSV data fields
+     * @param data List containing file lines as Strings
+     * @return List of String[]s containing CSV data fields
      */
     @Override
     public List<String[]> decode(List<String> data) {
