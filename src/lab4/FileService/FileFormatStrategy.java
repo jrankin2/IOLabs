@@ -7,6 +7,17 @@ import java.util.List;
  * @author jrankin2
  */
 public interface FileFormatStrategy {
-    public abstract List encode();
-    public abstract List decode(List data);
+    /**
+     * Takes an object containing data and encodes it to a list of file lines.
+     * @param data object to encode
+     * @return list of file lines
+     */
+    public abstract List encode(Object data);//
+    
+    /**
+     * Takes a List containing line data and decodes it to an object.
+     * @param data file lines
+     * @return object with decoded data in it.
+     */
+    public abstract Object decode(List data);
 }

@@ -4,8 +4,9 @@
  */
 package lab4.FileService;
 
-import java.beans.XMLEncoder;
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -19,26 +20,21 @@ public class FileService {
     File writeFile;
     FileFormatStrategy fileReaderFormat;
     FileFormatStrategy fileWriterFormat;
-    
-    public FileService(){
-        
+
+    public FileService(FileReaderStrategy fileReader, FileWriterStrategy fileWriter, FileFormatStrategy fileReaderFormat, FileFormatStrategy fileWriterFormat) {
+        this.fileReader = fileReader;
+        this.fileWriter = fileWriter;
+        this.fileReaderFormat = fileReaderFormat;
+        this.fileWriterFormat = fileWriterFormat;
     }
     
-    public boolean writeFile(){
-        XMLEncoder encoder;
-        return true;
+    public boolean writeFile(List objects) throws IOException{
+        return fileWriter.writeFile(objects);
     }
     
-    public boolean writeFileFromObject(){
-        return true;
-    }
     
-    public Object readFileToObject(){
-        return null;
-    }
-    
-    public String[] readFileLines(){
-        return null;
+    public Object readFile() throws IOException{
+        return fileReader.readFile();
     }
     
     public static void main(String[] args) {

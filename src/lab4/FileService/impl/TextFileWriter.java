@@ -29,11 +29,12 @@ public class TextFileWriter implements FileWriterStrategy {
                 new BufferedWriter(
                 new FileWriter(filePath, append)));
 
-        StringBuilder sbuf = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < objects.size(); i++) {
-            sbuf.append(objects.get(i)).append("\n");
+            sb.append(objects.get(i));
+            if(i != objects.size()-1) sb.append("\n");
         }
-        out.println(sbuf.toString());
+        out.println(sb.toString());
         out.close();
 
         return true;
