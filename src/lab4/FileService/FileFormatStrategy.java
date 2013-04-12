@@ -17,7 +17,8 @@ public interface FileFormatStrategy {
     /**
      * Takes a List containing line data and decodes it to an object.
      * @param data file lines
-     * @return object with decoded data in it.
+     * @return object with decoded data in it. See implementation documentation<br>
+     * for more details.
      */
     public abstract Object decode(List data);
 }

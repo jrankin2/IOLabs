@@ -9,6 +9,7 @@ import lab4.FileService.FileType;
 import lab4.FileService.FileWriterStrategy;
 
 /**
+ * Writes text files given a list of objects.
  * @author Joe
  */
 public class TextFileWriter implements FileWriterStrategy {
