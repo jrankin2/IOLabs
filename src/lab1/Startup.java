@@ -26,7 +26,7 @@ public class Startup {
             while (line != null) {
                 lineFields = line.split("\\|");
                 System.out.printf("name: %s,  street: %s, city: %s, email: %s, phone: %s\n",
-                        lineFields[1]+" "+lineFields[0],//name
+                        lineFields[1] + " " + lineFields[0],//name
                         lineFields[2],//street
                         lineFields[3] + ", " + lineFields[4] + " " + lineFields[5],//city
                         lineFields[6],//email
