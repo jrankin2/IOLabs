@@ -9,4 +9,7 @@ import java.util.List;
  */
 public interface FileWriterStrategy {
     public abstract boolean writeFile(List objects) throws IOException;//returns success bool
+    
+    public abstract void setAppend(boolean append);
+    public abstract boolean doesAppend();
 }

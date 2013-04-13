@@ -16,8 +16,6 @@ import java.util.List;
 public class FileService {
     FileReaderStrategy fileReader;//TextFileReader/BinaryFileReader
     FileWriterStrategy fileWriter;//TextFileWriter/BinaryFileWriter
-    File readFile;
-    File writeFile;
     FileFormatStrategy fileReaderFormat;
     FileFormatStrategy fileWriterFormat;
 
@@ -38,8 +36,45 @@ public class FileService {
         List<String> fileLines = fileReader.readFile();
         return fileReaderFormat.decode(fileLines);
     }
-    
-    public static void main(String[] args) {
-        
+
+    public FileReaderStrategy getFileReader() {
+        return fileReader;
     }
+
+    public void setFileReader(FileReaderStrategy fileReader) {
+        this.fileReader = fileReader;
+    }
+
+    public FileWriterStrategy getFileWriter() {
+        return fileWriter;
+    }
+
+    public void setFileWriter(FileWriterStrategy fileWriter) {
+        this.fileWriter = fileWriter;
+    }
+
+    public FileFormatStrategy getFileReaderFormat() {
+        return fileReaderFormat;
+    }
+
+    public void setFileReaderFormat(FileFormatStrategy fileReaderFormat) {
+        this.fileReaderFormat = fileReaderFormat;
+    }
+
+    public FileFormatStrategy getFileWriterFormat() {
+        return fileWriterFormat;
+    }
+
+    public void setFileWriterFormat(FileFormatStrategy fileWriterFormat) {
+        this.fileWriterFormat = fileWriterFormat;
+    }
+
+    public void setAppend(boolean append) {
+        fileWriter.setAppend(append);
+    }
+
+    public boolean doesAppend() {
+        return fileWriter.doesAppend();
+    }
+    
 }

@@ -46,4 +46,12 @@ public class TextFileWriter implements FileWriterStrategy {
     public static boolean writeFile(String filePath, boolean append, List objects) throws IOException{
         return new TextFileWriter(filePath, append).writeFile(objects);
     }
+
+    public void setAppend(boolean append) {
+        this.append = append;
+    }
+
+    public boolean doesAppend() {
+        return append;
+    }
 }

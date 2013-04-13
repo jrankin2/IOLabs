@@ -1,14 +1,13 @@
-package lab3;
 
-import java.io.Serializable;
+package lab4.FileService.impl;
 
 /**
- * Represents a contact. - setters all need validation
+ * Represents a contact.
  * @author jrankin2
  *  first name, last name, street address, 
 city, state, zip, email, phone fields
  */
-public class Contact implements Serializable {
+public class Contact {
     private String lastName;
     private String firstName;
     private String streetAddress;
@@ -61,5 +60,17 @@ public class Contact implements Serializable {
         return phone;
     }
     
-    
+    public String toString(){
+        //should probably use a stringbuilder for this, but laziness
+        //prevails for now.
+        String d = "|";//delimiter, d for sanity
+        return lastName + d +
+                firstName + d +
+                streetAddress + d +
+                city + d +
+                state + d +
+                zipCode + d +
+                email + d +
+                phone;
+    }
 }
