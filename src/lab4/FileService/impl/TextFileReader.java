@@ -29,6 +29,8 @@ public class TextFileReader implements FileReaderStrategy {
             lines.add(line);
             line = in.readLine();
         }
+        
+        
         in.close();
 
         return lines;

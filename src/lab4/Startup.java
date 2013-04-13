@@ -12,8 +12,9 @@ import lab4.FileService.*;
 import lab4.FileService.impl.*;
 
 /**
- *
- * @author bitstudent
+ * Just a class demonstrating the FileService.
+ * See also - ContactConversionSample
+ * @author jrankin2
  */
 public class Startup {
     

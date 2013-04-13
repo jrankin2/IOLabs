@@ -1,3 +1,4 @@
 Smith|Bob|1234 Street St.|Milwaukee|WI|53186|bob@gmail.com|222-333-4444
 Jones|Sally|1422 Go St.|Waukesha|WI|53188|sally@gmail.com|333-444-5555
-Smith|Dan|ABC Lane|Waukesha|WI|53189|dan@gmail.com|444-555-6666
+Smith|Dan|12354 ABC Lane|Waukesha|WI|53189|dan@gmail.com|444-555-6666
+Smalls|Biggie|126 ABC St.|Waukesha|WI|53188|daniel@gmail.com|555-666-7777
