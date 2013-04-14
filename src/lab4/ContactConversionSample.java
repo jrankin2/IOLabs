@@ -18,17 +18,17 @@ public class ContactConversionSample {
     public static void main(String[] args) {
         FileReaderStrategy tfr = new TextFileReader("src/contactsTest.txt");
         FileWriterStrategy tfw = new TextFileWriter("src/contactsTest.txt", false);
-        FileFormatStrategy cc = new ContactsConverter();
+        FileFormatStrategy<String, Contact> cc = new ContactsConverter();
         List<Contact> contacts = new ArrayList<Contact>();
         List<Contact> fileContacts = null;
         //create the contacts...
         Contact a = new Contact("Smith","Bob","1234 Street St.","Milwaukee","WI","53186","bob@gmail.com","222-333-4444");
-        Contact b = new Contact("Jones", "Sally", "1422 Go St.", "Waukesha", "WI", "53188", "sally@gmail.com", "333-444-5555");
-        Contact c = new Contact("Smith", "Dan", "12354 ABC Lane", "Waukesha", "WI", "53189", "dan@gmail.com", "444-555-6666");
+        Contact b = new Contact("Jones", "Sally", "1422 Go St.", "Mukwanago", "WI", "53188", "sally@gmail.com", "333-444-5555");
+        Contact c = new Contact("Smith", "Dan", "12354 ABC Lane", "Brooklyn", "NY", "53189", "dan@gmail.com", "444-555-6666");
         
         //using the ContactsConverter without the fileservice - omg flexibility
         List<String> encodedContacts = new ArrayList<String>();
-        encodedContacts.add("Smalls|Biggie|126 ABC St.|Waukesha|WI|53188|daniel@gmail.com|555-666-7777");
+        encodedContacts.add("Smalls|Biggie|126 ABC St.|Waukesha|WI|53188|biggie@gmail.com|555-666-7777");
         Contact d = ((ContactsConverter)cc).decode(encodedContacts).get(0);//casted to use generics...
         
         
@@ -38,7 +38,7 @@ public class ContactConversionSample {
         contacts.add(c);
         contacts.add(d);
         
-        FileService fs = new FileService(tfr, tfw, cc, cc);
+        FileService<Contact> fs = new FileService<Contact>(tfr, tfw, cc, cc);
         try{
             if(fs.writeFile(contacts)){//if writing was successful
                 fileContacts = fs.readFile();
