@@ -1,28 +1,57 @@
 package lab4.FileService.impl;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import lab4.FileService.FileHandlerStrategy;
 import lab4.FileService.FileType;
-import lab4.FileService.FileWriterStrategy;
 
 /**
- * Writes text files given a list of objects.
- * @author Joe
+ *
+ * @author Joe Rankin
  */
-public class TextFileWriter implements FileWriterStrategy {
-
+public class TextFileHandler implements FileHandlerStrategy{
     private static final FileType FILE_TYPE = FileType.TEXT_FILE;
     private String filePath;
     private boolean append;
-
-    public TextFileWriter(String filePath, boolean append) {
+    
+    public TextFileHandler(String filePath){
         this.filePath = filePath;
-        this.append = append;
+        this.append = true;//on the safe side.
     }
 
+    public TextFileHandler(String filePath, boolean appends) {
+        this.filePath = filePath;
+    }
+    
+    @Override
+    public List readFile() throws IOException {
+        List lines = new ArrayList();
+
+        BufferedReader in = new BufferedReader(
+                new FileReader(filePath));
+        String line = in.readLine();
+        while (line != null) {
+            lines.add(line);
+            line = in.readLine();
+        }
+        
+        
+        in.close();
+
+        return lines;
+    }
+    
+    //helper method
+    public static List readFile(String filePath) throws IOException {
+        return new TextFileReader(filePath).readFile();
+    }
+    
     @Override
     public boolean writeFile(List objects) throws IOException {
         //needs validation...
