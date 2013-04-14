@@ -29,12 +29,19 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
     FileWriterStrategy fileWriter;//TextFileWriter/BinaryFileWriter
     DecoderStrategy fileReaderFormat;
     EncoderStrategy fileWriterFormat;
+    
+    public FileService(FileHandlerStrategy fileHandler, FormatStrategy format){
+        fileReader = fileHandler;
+        fileWriter = fileHandler;
+        fileReaderFormat = format;
+        fileWriterFormat = format;
+    }
 
     public FileService(FileReaderStrategy fileReader, 
             FileWriterStrategy fileWriter, 
-            DecoderStrategy<String,T> fileReaderFormat, 
+            DecoderStrategy<String,T> fileReaderFormat,
             EncoderStrategy<String,T> fileWriterFormat) 
-    {//I hate multi-line method signatures with a passion - but this is realllly long :(
+    {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
         this.fileReaderFormat = fileReaderFormat;
@@ -73,7 +80,7 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
             List<String> fileLines = fileReader.readFile();
             return fileReaderFormat != null ? fileReaderFormat.decode(fileLines) : fileLines;
         } else{
-            throw new UnsupportedOperationException("Can't read from (null)");
+            throw new UnsupportedOperationException("Can't read from null");
         }
     }
     
