@@ -73,8 +73,6 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         }
     }
     
-    //don't know of a way to make the lists use generics...
-    //unless specifying them in the class definition - which might be viable...
     public List<String> encode(List<T> data) {
         if(fileWriterFormat == null){
             throw new UnsupportedOperationException("Cannot encode data with null formatter.");

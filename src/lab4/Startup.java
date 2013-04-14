@@ -21,12 +21,12 @@ public class Startup {
     public static void main(String[] args) {
         FileReaderStrategy tfr = new TextFileReader("src/fsTest.txt");
         FileWriterStrategy tfw = new TextFileWriter("src/fsTest.txt", false);
-        CSVConverter csvc = new CSVConverter();
+        FileFormatStrategy csvc = new CSVConverter();
         List<String[]> lines = new ArrayList<String[]>();
         lines.add(new String[] {"hello", "world"});
         lines.add(new String[] {"world", "hello"});
         
-        FileService fs = new FileService(tfr, tfw, csvc, csvc);
+        FileService<String[]> fs = new FileService(tfr, tfw, csvc, csvc);
         try{
             if(fs.writeFile(lines)){//if writing was successful
                 List<String[]> csvData = fs.readFile();
