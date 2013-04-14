@@ -3,6 +3,9 @@ package lab4.FileService;
 import java.util.List;
 
 /**
+ * Extends both encoder and decoder to provide an interface for complete format
+ * handling implementations.
+ * 
  * Defines a strategy to encode and decode file data. I decided to use lists in
  * this strategy so that implementations can do things that assume they're being
  * passed a complete file, such as a (more complicated) CSV implementation that
@@ -15,18 +18,11 @@ import java.util.List;
  * 
  * @author jrankin2
  */
-public interface FileFormatStrategy<EncodedObject, DecodedObject> {
-    /**
-     * Takes a List of DecodedObjects and encodes it to a List of EncodedObjects.
-     * @param data List of DecodedObjects to encode
-     * @return List of EncodedObjects (e.g. Strings in the case of file handling)
-     */
-    public abstract List<EncodedObject> encode(List<DecodedObject> data);//
+public interface FormatStrategy<EncodedObject, DecodedObject> 
+                          extends EncoderStrategy<EncodedObject, DecodedObject>,
+                                  DecoderStrategy<EncodedObject, DecodedObject>{
     
-    /**
-     * Takes a List EncodedObjects and decodes it to a List of DecodedObjects.
-     * @param data List of EncodedObjects to decode
-     * @return List of DecodedObjects
-     */
-    public abstract List<DecodedObject> decode(List<EncodedObject> data);
+    //public abstract List<EncodedObject> encode(List<DecodedObject> data);//
+    
+    
 }

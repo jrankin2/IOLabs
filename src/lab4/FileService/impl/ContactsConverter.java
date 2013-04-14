@@ -8,7 +8,7 @@ import lab4.FileService.*;
  *
  * @author Joe
  */
-public class ContactsConverter implements FileFormatStrategy<String, Contact>{
+public class ContactsConverter implements FormatStrategy<String, Contact>{
 
     @Override
     public List<String> encode(List<Contact> data) {

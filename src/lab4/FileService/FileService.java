@@ -27,10 +27,14 @@ import lab4.Startup;
 public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
     FileReaderStrategy fileReader;//TextFileReader/BinaryFileReader
     FileWriterStrategy fileWriter;//TextFileWriter/BinaryFileWriter
-    FileFormatStrategy fileReaderFormat;
-    FileFormatStrategy fileWriterFormat;
+    DecoderStrategy fileReaderFormat;
+    EncoderStrategy fileWriterFormat;
 
-    public FileService(FileReaderStrategy fileReader, FileWriterStrategy fileWriter, FileFormatStrategy<String,T> fileReaderFormat, FileFormatStrategy<String,T> fileWriterFormat) {//I hate multi-line method signatures with a passion.
+    public FileService(FileReaderStrategy fileReader, 
+            FileWriterStrategy fileWriter, 
+            DecoderStrategy<String,T> fileReaderFormat, 
+            EncoderStrategy<String,T> fileWriterFormat) 
+    {//I hate multi-line method signatures with a passion - but this is realllly long :(
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
         this.fileReaderFormat = fileReaderFormat;
@@ -104,19 +108,19 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         this.fileWriter = fileWriter;
     }
 
-    public FileFormatStrategy getFileReaderFormat() {
+    public DecoderStrategy getFileReaderFormat() {
         return fileReaderFormat;
     }
 
-    public void setFileReaderFormat(FileFormatStrategy fileReaderFormat) {
+    public void setFileReaderFormat(DecoderStrategy fileReaderFormat) {
         this.fileReaderFormat = fileReaderFormat;
     }
 
-    public FileFormatStrategy getFileWriterFormat() {
+    public EncoderStrategy getFileWriterFormat() {
         return fileWriterFormat;
     }
 
-    public void setFileWriterFormat(FileFormatStrategy fileWriterFormat) {
+    public void setFileWriterFormat(EncoderStrategy fileWriterFormat) {
         this.fileWriterFormat = fileWriterFormat;
     }
 

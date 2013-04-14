@@ -21,7 +21,7 @@ public class Startup {
     public static void main(String[] args) {
         FileReaderStrategy tfr = new TextFileReader("src/fsTest.txt");
         FileWriterStrategy tfw = new TextFileWriter("src/fsTest.txt", false);
-        FileFormatStrategy csvc = new CSVConverter();
+        FormatStrategy csvc = new CSVConverter();
         List<String[]> lines = new ArrayList<String[]>();
         lines.add(new String[] {"hello", "world"});
         lines.add(new String[] {"world", "hello"});

@@ -2,12 +2,12 @@ package lab4.FileService.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import lab4.FileService.FileFormatStrategy;
+import lab4.FileService.FormatStrategy;
 
 /**
  * @author Joe
  */
-public class CSVConverter implements FileFormatStrategy<String, String[]>{
+public class CSVConverter implements FormatStrategy<String, String[]>{
     
     private static final char COL_DELIMITER = ',';
     private static final String COL_DELIMITER_STR = ",";

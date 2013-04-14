@@ -18,7 +18,7 @@ public class ContactConversionSample {
     public static void main(String[] args) {
         FileReaderStrategy tfr = new TextFileReader("src/contactsTest.txt");
         FileWriterStrategy tfw = new TextFileWriter("src/contactsTest.txt", false);
-        FileFormatStrategy<String, Contact> cc = new ContactsConverter();
+        FormatStrategy<String, Contact> cc = new ContactsConverter();
         List<Contact> contacts = new ArrayList<Contact>();
         List<Contact> fileContacts = null;
         //create the contacts...
