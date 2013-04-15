@@ -19,7 +19,7 @@ import java.util.List;
  * FileReaderFormat and FileWriterFormat can be null if reading/writing is not
  * needed. isReadable() and isWritable() return whether
  * 
- * "Thank god for type erasure!"
+ * "I love type erasure!"
  *      -No one ever
  * 
  * @author jrankin2
