@@ -15,7 +15,7 @@ import lab4.FileService.FileType;
  *
  * @author Joe Rankin
  */
-public class TextFileHandler implements FileHandlerStrategy{
+public class TextFileHandler implements FileHandlerStrategy<String>{
     private static final FileType FILE_TYPE = FileType.TEXT_FILE;
     private String filePath;
     private boolean append;
@@ -30,7 +30,7 @@ public class TextFileHandler implements FileHandlerStrategy{
     }
     
     @Override
-    public List readFile() throws IOException {
+    public List<String> readFile() throws IOException {
         List lines = new ArrayList();
 
         BufferedReader in = new BufferedReader(
@@ -48,12 +48,12 @@ public class TextFileHandler implements FileHandlerStrategy{
     }
     
     //helper method
-    public static List readFile(String filePath) throws IOException {
+    public static List<String> readFile(String filePath) throws IOException {
         return new TextFileReader(filePath).readFile();
     }
     
     @Override
-    public boolean writeFile(List objects) throws IOException {
+    public boolean writeFile(List<String> objects) throws IOException {
         //needs validation...
         //System.out.println("objects = " + objects);//debug
         PrintWriter out = new PrintWriter(

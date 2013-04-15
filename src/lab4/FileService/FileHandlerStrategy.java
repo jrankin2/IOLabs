@@ -5,6 +5,6 @@ package lab4.FileService;
  * implementations.
  * @author Joe
  */
-public interface FileHandlerStrategy extends FileReaderStrategy, FileWriterStrategy {
+public interface FileHandlerStrategy<T> extends FileReaderStrategy<T>, FileWriterStrategy<T> {
     
 }

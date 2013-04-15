@@ -7,6 +7,6 @@ import java.util.List;
  * Defines a file reading strategy
  * @author jrankin2
  */
-public interface FileReaderStrategy {
-    public abstract List readFile() throws IOException;
+public interface FileReaderStrategy<T> {
+    public abstract List<T> readFile() throws IOException;
 }

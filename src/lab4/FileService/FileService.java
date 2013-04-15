@@ -24,23 +24,23 @@ import lab4.Startup;
  * 
  * @author jrankin2
  */
-public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
+public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     FileReaderStrategy fileReader;//TextFileReader/BinaryFileReader
     FileWriterStrategy fileWriter;//TextFileWriter/BinaryFileWriter
     DecoderStrategy fileReaderFormat;
     EncoderStrategy fileWriterFormat;
     
-    public FileService(FileHandlerStrategy fileHandler, FormatStrategy format){
+    public FileService(FileHandlerStrategy<E> fileHandler, FormatStrategy<E,D> format){
         fileReader = fileHandler;
         fileWriter = fileHandler;
         fileReaderFormat = format;
         fileWriterFormat = format;
     }
 
-    public FileService(FileReaderStrategy fileReader, 
-            FileWriterStrategy fileWriter, 
-            DecoderStrategy<String,T> fileReaderFormat,
-            EncoderStrategy<String,T> fileWriterFormat) 
+    public FileService(FileReaderStrategy<E> fileReader, 
+            FileWriterStrategy<E> fileWriter, 
+            DecoderStrategy<E,D> fileReaderFormat,
+            EncoderStrategy<E,D> fileWriterFormat) 
     {
         this.fileReader = fileReader;
         this.fileWriter = fileWriter;
@@ -57,9 +57,9 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
      * @throws IOException if there's a problem writing to file
      * @throws UnsupportedOperationException when fileWriter is null
      */
-    public boolean writeFile(List<T> objects) throws IOException, UnsupportedOperationException{
+    public boolean writeFile(List<D> objects) throws IOException, UnsupportedOperationException{
         if(isWriteable()){
-            List<String> encodedLines = fileWriter != null ? fileWriterFormat.encode(objects) : objects;
+            List<E> encodedLines = fileWriter != null ? fileWriterFormat.encode(objects) : objects;
             return fileWriter.writeFile(encodedLines);
         } else{
             //just return false?
@@ -75,23 +75,23 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
      * @throws IOException when file reading errors
      * @throws UnsupportedOperationException when fileReader is null
      */
-    public List<T> readFile() throws IOException, UnsupportedOperationException{
+    public List<D> readFile() throws IOException, UnsupportedOperationException{
         if(isReadable()){
-            List<String> fileLines = fileReader.readFile();
+            List<E> fileLines = fileReader.readFile();
             return fileReaderFormat != null ? fileReaderFormat.decode(fileLines) : fileLines;
         } else{
             throw new UnsupportedOperationException("Can't read from null");
         }
     }
     
-    public List<String> encode(List<T> data) {
+    public List<E> encode(List<D> data) {
         if(fileWriterFormat == null){
             throw new UnsupportedOperationException("Cannot encode data with null formatter.");
         }
         return fileWriterFormat.encode(data);
     }
 
-    public List<T> decode(List<String> data) {
+    public List<D> decode(List<E> data) {
         if(fileReaderFormat == null){
             throw new UnsupportedOperationException("Cannot decode data with null formatter.");
         }
@@ -103,7 +103,7 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         return fileReader;
     }
 
-    public void setFileReader(FileReaderStrategy fileReader) {
+    public void setFileReader(FileReaderStrategy<E> fileReader) {
         this.fileReader = fileReader;
     }
 
@@ -111,7 +111,7 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         return fileWriter;
     }
 
-    public void setFileWriter(FileWriterStrategy fileWriter) {
+    public void setFileWriter(FileWriterStrategy<E> fileWriter) {
         this.fileWriter = fileWriter;
     }
 
@@ -119,7 +119,7 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         return fileReaderFormat;
     }
 
-    public void setFileReaderFormat(DecoderStrategy fileReaderFormat) {
+    public void setFileReaderFormat(DecoderStrategy<E,D> fileReaderFormat) {
         this.fileReaderFormat = fileReaderFormat;
     }
 
@@ -127,7 +127,7 @@ public class FileService<T>{//<EncodedFormat, DecodedFormat>//viable?
         return fileWriterFormat;
     }
 
-    public void setFileWriterFormat(EncoderStrategy fileWriterFormat) {
+    public void setFileWriterFormat(EncoderStrategy<E,D> fileWriterFormat) {
         this.fileWriterFormat = fileWriterFormat;
     }
 

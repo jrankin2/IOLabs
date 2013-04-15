@@ -10,7 +10,7 @@ import lab4.FileService.*;
 /**
  * @author Joe
  */
-public class TextFileReader implements FileReaderStrategy {
+public class TextFileReader implements FileReaderStrategy<String> {
     private static final FileType FILE_TYPE = FileType.TEXT_FILE;
     private String filePath;
 
@@ -19,7 +19,7 @@ public class TextFileReader implements FileReaderStrategy {
     }
     
     @Override
-    public List readFile() throws IOException {
+    public List<String> readFile() throws IOException {
         List lines = new ArrayList();
 
         BufferedReader in = new BufferedReader(

@@ -12,7 +12,7 @@ import lab4.FileService.FileWriterStrategy;
  * Writes text files given a list of objects.
  * @author Joe
  */
-public class TextFileWriter implements FileWriterStrategy {
+public class TextFileWriter implements FileWriterStrategy<String> {
 
     private static final FileType FILE_TYPE = FileType.TEXT_FILE;
     private String filePath;
