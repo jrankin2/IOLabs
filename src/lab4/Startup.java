@@ -19,14 +19,17 @@ import lab4.FileService.impl.*;
 public class Startup {
     
     public static void main(String[] args) {
-        FileReaderStrategy tfr = new TextFileReader("src/fsTest.txt");
-        FileWriterStrategy tfw = new TextFileWriter("src/fsTest.txt", false);
-        FormatStrategy csvc = new CSVConverter();
+        FileReaderStrategy<String> tfr = new TextFileReader("src/fsTest.txt");
+        FileWriterStrategy<String> tfw = new TextFileWriter("src/fsTest.txt", false);
+        FormatStrategy<String, String[]> csvc = new CSVConverter();
         List<String[]> lines = new ArrayList<String[]>();
         lines.add(new String[] {"hello", "world"});
         lines.add(new String[] {"world", "hello"});
         
-        FileService<String[]> fs = new FileService(tfr, tfw, csvc, csvc);
+        
+        FormatStrategy<String,Contact> cc = new ContactsConverter();//this won't compile if used
+        FormatStrategy<String,Contact> cc2 = new ContactsConverter();//but this will...
+        FileService<String, String[]> fs = new FileService(tfr, tfw, cc, csvc);
         try{
             if(fs.writeFile(lines)){//if writing was successful
                 List<String[]> csvData = fs.readFile();

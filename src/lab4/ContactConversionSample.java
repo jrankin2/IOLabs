@@ -16,8 +16,8 @@ import lab4.FileService.impl.*;
  */
 public class ContactConversionSample {
     public static void main(String[] args) {
-        FileReaderStrategy tfr = new TextFileReader("src/contactsTest.txt");
-        FileWriterStrategy tfw = new TextFileWriter("src/contactsTest.txt", false);
+        FileReaderStrategy<String> tfr = new TextFileReader("src/contactsTest.txt");
+        FileWriterStrategy<String> tfw = new TextFileWriter("src/contactsTest.txt", false);
         FormatStrategy<String, Contact> cc = new ContactsConverter();
         List<Contact> contacts = new ArrayList<Contact>();
         List<Contact> fileContacts = null;
@@ -38,7 +38,7 @@ public class ContactConversionSample {
         contacts.add(c);
         contacts.add(d);
         
-        FileService<Contact> fs = new FileService<Contact>(tfr, tfw, cc, cc);
+        FileService<String, Contact> fs = new FileService<String, Contact>(tfr, tfw, cc, cc);
         try{
             if(fs.writeFile(contacts)){//if writing was successful
                 fileContacts = fs.readFile();

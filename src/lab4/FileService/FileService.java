@@ -13,7 +13,7 @@ import lab4.Startup;
  * FileService<T>
  * 
  * File service that reads and writes to files using the specified formatters.
- * Formatters must be of the generic <String,T> if FileService is initialized using
+ * Formatters must be of the generic <EncodedObject,DecodedObject> if FileService is initialized using
  * generics.
  * 
  * If a formatter is null, it assumes it is writing to / reading from files
@@ -25,9 +25,9 @@ import lab4.Startup;
  * @author jrankin2
  */
 public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
-    FileReaderStrategy fileReader;//TextFileReader/BinaryFileReader
-    FileWriterStrategy fileWriter;//TextFileWriter/BinaryFileWriter
-    DecoderStrategy fileReaderFormat;
+    FileReaderStrategy<E> fileReader;//TextFileReader/BinaryFileReader
+    FileWriterStrategy<E> fileWriter;//TextFileWriter/BinaryFileWriter
+    DecoderStrategy<E,D> fileReaderFormat;
     EncoderStrategy fileWriterFormat;
     
     public FileService(FileHandlerStrategy<E> fileHandler, FormatStrategy<E,D> format){
@@ -59,7 +59,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
      */
     public boolean writeFile(List<D> objects) throws IOException, UnsupportedOperationException{
         if(isWriteable()){
-            List<E> encodedLines = fileWriter != null ? fileWriterFormat.encode(objects) : objects;
+            List<E> encodedLines = (fileWriterFormat != null ? fileWriterFormat.encode(objects) : objects);
             return fileWriter.writeFile(encodedLines);
         } else{
             //just return false?
@@ -78,7 +78,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     public List<D> readFile() throws IOException, UnsupportedOperationException{
         if(isReadable()){
             List<E> fileLines = fileReader.readFile();
-            return fileReaderFormat != null ? fileReaderFormat.decode(fileLines) : fileLines;
+            return (List<D>) (fileReaderFormat != null ? fileReaderFormat.decode(fileLines) : fileLines);
         } else{
             throw new UnsupportedOperationException("Can't read from null");
         }
