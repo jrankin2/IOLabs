@@ -12,13 +12,15 @@ import java.util.List;
  * 
  * File service that reads and writes to files using the specified formatters.
  * Generics ensure that data is being encoded/decoded to/from the same types...
- * If you need to encode/decode with different types, don't use generics.
  * 
  * If a formatter is null, it assumes it is writing to / reading from files
  * without using a formatter.
  * 
  * FileReaderFormat and FileWriterFormat can be null if reading/writing is not
  * needed. isReadable() and isWritable() return whether
+ * 
+ * "Thank god for type erasure!"
+ *      -No one ever
  * 
  * @author jrankin2
  */
@@ -100,6 +102,9 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
 
     public void setFileReader(FileReaderStrategy<E> fileReader) {
+        if(fileReader == null){
+            throw new IllegalArgumentException("File Reader cannot be null");
+        }
         this.fileReader = fileReader;
     }
 
@@ -108,6 +113,9 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
 
     public void setFileWriter(FileWriterStrategy<E> fileWriter) {
+        if(fileWriter == null){
+            throw new IllegalArgumentException("File Writer cannot be null");
+        }
         this.fileWriter = fileWriter;
     }
 
@@ -116,6 +124,9 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
 
     public void setFileReaderFormat(DecoderStrategy<E,D> fileReaderFormat) {
+        if(fileReaderFormat == null){
+            throw new IllegalArgumentException("File Reader Format cannot be null.");
+        }
         this.fileReaderFormat = fileReaderFormat;
     }
 
@@ -124,6 +135,9 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
 
     public void setFileWriterFormat(EncoderStrategy<E,D> fileWriterFormat) {
+        if(fileWriterFormat == null){
+            throw new IllegalArgumentException("File Writer Format cannot be null.");
+        }
         this.fileWriterFormat = fileWriterFormat;
     }
 

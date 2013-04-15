@@ -8,10 +8,10 @@ import java.util.List;
 import lab4.FileService.FormatStrategy;
 
 /**
- *
- * @author bitstudent
+ * Provides a way to not format text files when using FileService.
+ * @author Joe Rankin
  */
-public class NullFormatter implements FormatStrategy<String, String> {
+public class NullTextFormatter implements FormatStrategy<String, String> {
 
     @Override
     public List<String> encode(List<String> data) {
