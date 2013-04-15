@@ -16,7 +16,7 @@ import lab4.FileService.impl.TextFileWriter;
 
 /**
  *
- * @author bitstudent
+ * @author Joe Rankin
  */
 public class NullFormattersTesting {
     public static void main(String[] args) {
