@@ -1,3 +1,4 @@
-Smith|Bob|1234 Street St.|Milwaukee|WI|53186
-Jones|Sally|1422 Go St.|Waukesha|WI|53188
-Smith|Dan|12356 abc St.|Waukesha|WI|53188
+Rankin|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
+Rankin|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
+Rankin2|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
+Rankin|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763

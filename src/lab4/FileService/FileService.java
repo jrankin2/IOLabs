@@ -31,10 +31,10 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     EncoderStrategy<E,D> fileWriterFormat;
     
     public FileService(FileHandlerStrategy<E> fileHandler, FormatStrategy<E,D> format){
-        fileReader = fileHandler;
-        fileWriter = fileHandler;
-        fileReaderFormat = format;
-        fileWriterFormat = format;
+        setFileReader(fileHandler);
+        setFileWriter(fileHandler);
+        setFileReaderFormat(format);
+        setFileWriterFormat(format);
     }
 
     public FileService(FileReaderStrategy<E> fileReader, 
@@ -42,10 +42,10 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
             DecoderStrategy<E,D> fileReaderFormat,
             EncoderStrategy<E,D> fileWriterFormat) 
     {
-        this.fileReader = fileReader;
-        this.fileWriter = fileWriter;
-        this.fileReaderFormat = fileReaderFormat;
-        this.fileWriterFormat = fileWriterFormat;
+        setFileReader(fileReader);
+        setFileWriter(fileWriter);
+        setFileReaderFormat(fileReaderFormat);
+        setFileWriterFormat(fileWriterFormat);
     }
     
     /**
@@ -55,7 +55,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
      * @throws IOException if there's a problem writing to file
      * @throws UnsupportedOperationException when fileWriter is null
      */
-    public boolean writeFile(List<D> objects) throws IOException, UnsupportedOperationException{
+    public final boolean writeFile(List<D> objects) throws IOException, UnsupportedOperationException{
         if(isWriteable() && fileWriterFormat != null){
             List<E> encodedLines = fileWriterFormat.encode(objects);
             return fileWriter.writeFile(encodedLines);
@@ -72,7 +72,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
      * @throws IOException when file reading errors
      * @throws UnsupportedOperationException when fileReader is null
      */
-    public List<D> readFile() throws IOException, UnsupportedOperationException{
+    public final List<D> readFile() throws IOException, UnsupportedOperationException{
         if(isReadable() && fileReaderFormat != null){
             List<E> fileLines = fileReader.readFile();
             return fileReaderFormat.decode(fileLines);
@@ -82,14 +82,14 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
     
     
-    public List<E> encode(List<D> data) {
+    public final List<E> encode(List<D> data) {
         if(fileWriterFormat == null){
             throw new UnsupportedOperationException("Cannot encode data with null encoder.");
         }
         return fileWriterFormat.encode(data);
     }
 
-    public List<D> decode(List<E> data) {
+    public final List<D> decode(List<E> data) {
         if(fileReaderFormat == null){
             throw new UnsupportedOperationException("Cannot decode data with null decoder.");
         }
@@ -97,63 +97,63 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     }
     
 
-    public FileReaderStrategy getFileReader() {
+    public final FileReaderStrategy getFileReader() {
         return fileReader;
     }
 
-    public void setFileReader(FileReaderStrategy<E> fileReader) {
-        if(fileReader == null){
-            throw new IllegalArgumentException("File Reader cannot be null");
-        }
+    public final void setFileReader(FileReaderStrategy<E> fileReader) {
+//        if(fileReader == null){
+//            throw new IllegalArgumentException("File Reader cannot be null");
+//        }
         this.fileReader = fileReader;
     }
 
-    public FileWriterStrategy getFileWriter() {
+    public final FileWriterStrategy getFileWriter() {
         return fileWriter;
     }
 
-    public void setFileWriter(FileWriterStrategy<E> fileWriter) {
-        if(fileWriter == null){
-            throw new IllegalArgumentException("File Writer cannot be null");
-        }
+    public final void setFileWriter(FileWriterStrategy<E> fileWriter) {
+//        if(fileWriter == null){
+//            throw new IllegalArgumentException("File Writer cannot be null");
+//        }
         this.fileWriter = fileWriter;
     }
 
-    public DecoderStrategy getFileReaderFormat() {
+    public final DecoderStrategy getFileReaderFormat() {
         return fileReaderFormat;
     }
 
-    public void setFileReaderFormat(DecoderStrategy<E,D> fileReaderFormat) {
+    public final void setFileReaderFormat(DecoderStrategy<E,D> fileReaderFormat) {
         if(fileReaderFormat == null){
             throw new IllegalArgumentException("File Reader Format cannot be null.");
         }
         this.fileReaderFormat = fileReaderFormat;
     }
 
-    public EncoderStrategy getFileWriterFormat() {
+    public final EncoderStrategy getFileWriterFormat() {
         return fileWriterFormat;
     }
 
-    public void setFileWriterFormat(EncoderStrategy<E,D> fileWriterFormat) {
+    public final void setFileWriterFormat(EncoderStrategy<E,D> fileWriterFormat) {
         if(fileWriterFormat == null){
             throw new IllegalArgumentException("File Writer Format cannot be null.");
         }
         this.fileWriterFormat = fileWriterFormat;
     }
 
-    public void setAppend(boolean append) {
+    public final void setAppend(boolean append) {
         fileWriter.setAppend(append);
     }
 
-    public boolean doesAppend() {
+    public final boolean doesAppend() {
         return fileWriter.doesAppend();
     }
     
-    public boolean isWriteable(){
+    public final boolean isWriteable(){
         return fileWriter != null;
     }
     
-    public boolean isReadable(){
+    public final boolean isReadable(){
         return fileReader != null;
     }
     
