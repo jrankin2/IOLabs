@@ -18,11 +18,7 @@ import java.util.List;
  * 
  * @author jrankin2
  */
-public interface FormatStrategy<EncodedObject, DecodedObject> 
-                          extends EncoderStrategy<EncodedObject, DecodedObject>,
-                                  DecoderStrategy<EncodedObject, DecodedObject>{
-    
-    //public abstract List<EncodedObject> encode(List<DecodedObject> data);//
-    
-    
+public interface FormatStrategy<E, D> 
+                          extends EncoderStrategy<E, D>,
+                                  DecoderStrategy<E, D>{
 }

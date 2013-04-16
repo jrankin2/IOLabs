@@ -12,17 +12,14 @@ import java.util.List;
  * 
  * File service that reads and writes to files using the specified formatters.
  * Generics ensure that data is being encoded/decoded to/from the same types...
- * 
- * If a formatter is null, it assumes it is writing to / reading from files
- * without using a formatter.
- * 
+ *
  * FileReaderFormat and FileWriterFormat can be null if reading/writing is not
  * needed. isReadable() and isWritable() return whether
  * 
  * "I love type erasure!"
  *      -No one ever
  * 
- * @author jrankin2
+ * @author Joe Rankin
  */
 public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
     FileReaderStrategy<E> fileReader;//TextFileReader/BinaryFileReader
@@ -61,7 +58,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
             return fileWriter.writeFile(encodedLines);
         } else{
             //just return false?
-            throw new UnsupportedOperationException("Cannot write to or format with null");
+            throw new UnsupportedOperationException("Cannot write to / format with null");
         }
     }
     
@@ -77,7 +74,7 @@ public class FileService<E, D>{//<EncodedFormat, DecodedFormat>//viable?
             List<E> fileLines = fileReader.readFile();
             return fileReaderFormat.decode(fileLines);
         } else{
-            throw new UnsupportedOperationException("Can't read from or format with null");
+            throw new UnsupportedOperationException("Can't read from / format with null");
         }
     }
     

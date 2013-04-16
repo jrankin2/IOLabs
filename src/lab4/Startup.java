@@ -26,8 +26,6 @@ public class Startup {
         lines.add(new String[] {"hello", "world"});
         lines.add(new String[] {"world", "hello"});
         
-        FormatStrategy<String,Contact> cc = new ContactsConverter();//this won't compile if used
-        DecoderStrategy cc2 = new ContactsConverter();//but this will... gives compiler errors though :)
         FileService<String, String[]> fs = new FileService<String,String[]>(tfr, tfw, csvc, csvc);
         try{
             if(fs.writeFile(lines)){//if writing was successful
