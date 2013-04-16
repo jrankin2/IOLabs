@@ -23,14 +23,13 @@ public class ContactsConverter implements FormatStrategy<String, Contact>{
 
     @Override
     public List<Contact> decode(List<String> data) {
-        List<Contact> contacts = new ArrayList();
+        List<Contact> contacts = new ArrayList<Contact>();
         for (String line : data) {
             String[] fields = line.split("\\|");
             if(fields.length != 8){
                 throw new UnsupportedOperationException(
                         "Contact has incorrect number of fields: "+ fields.length);
             }
-            
             
             contacts.add(new Contact(fields[0], 
                     fields[1],
@@ -41,7 +40,6 @@ public class ContactsConverter implements FormatStrategy<String, Contact>{
                     fields[6],
                     fields[7]));
         }
-        
         return contacts;
     }
     

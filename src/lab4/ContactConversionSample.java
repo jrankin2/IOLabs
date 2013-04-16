@@ -29,7 +29,7 @@ public class ContactConversionSample {
         //using the ContactsConverter without the fileservice - omg flexibility
         List<String> encodedContacts = new ArrayList<String>();
         encodedContacts.add("Smalls|Biggie|126 ABC St.|Waukesha|WI|53188|biggie@gmail.com|555-666-7777");
-        Contact d = ((ContactsConverter)cc).decode(encodedContacts).get(0);//casted to use generics...
+        Contact d = ((ContactsConverter)cc).decode(encodedContacts).get(0);//
         
         //add them to the list...
         contacts.add(a);

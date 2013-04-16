@@ -4,7 +4,6 @@
  */
 package lab4;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -299,7 +298,7 @@ public class ContactManager extends javax.swing.JFrame {
             for (Contact contact : contacts) {
                 contactsVector.add(contact.getLastName() + ", " + contact.getFirstName());
             }
-            this.contactsJList.setListData(contactsVector);
+            this.contactsJList.<String>setListData(contactsVector);
         }
     }
     

@@ -11,31 +11,37 @@ import lab4.FileService.*;
  * @author Joe
  */
 public class TextFileReader implements FileReaderStrategy<String> {
+
     private static final FileType FILE_TYPE = FileType.TEXT_FILE;
     private String filePath;
 
     public TextFileReader(String filePath) {
         this.filePath = filePath;
     }
-    
+
     @Override
     public List<String> readFile() throws IOException {
         List lines = new ArrayList();
-
-        BufferedReader in = new BufferedReader(
-                new FileReader(filePath));
-        String line = in.readLine();
-        while (line != null) {
-            lines.add(line);
-            line = in.readLine();
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(
+                    new FileReader(filePath));
+            String line = in.readLine();
+            while (line != null) {
+                lines.add(line);
+                line = in.readLine();
+            }
+        } catch(IOException ioe){
+            throw ioe;
+        }finally{
+            if(in != null){
+                in.close();
+            }
         }
         
-        
-        in.close();
-
         return lines;
     }
-    
+
     //helper method
     public static List readFile(String filePath) throws IOException {
         return new TextFileReader(filePath).readFile();
