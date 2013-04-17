@@ -41,6 +41,7 @@ public class ContactManager extends javax.swing.JFrame {
         contacts = new ArrayList<Contact>();
         readContactsFile();
         updateContactsJList();
+        setButtonStates(-1);
     }
 
     /**
@@ -78,6 +79,7 @@ public class ContactManager extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnMoveUp = new javax.swing.JButton();
         btnMoveDown = new javax.swing.JButton();
+        btnResetFields = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +146,18 @@ public class ContactManager extends javax.swing.JFrame {
         });
 
         btnMoveDown.setText("v");
+        btnMoveDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveDownActionPerformed(evt);
+            }
+        });
+
+        btnResetFields.setText("Reset Fields");
+        btnResetFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetFieldsActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,22 +165,26 @@ public class ContactManager extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(btnDelete, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(jLabel1))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, btnReload, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, btnAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, btnUpdate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel2)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btnUpdate)
-                            .add(btnReload)
-                            .add(layout.createSequentialGroup()
-                                .add(22, 22, 22)
-                                .add(jLabel1)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(btnMoveUp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(btnMoveDown, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(btnResetFields, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(btnMoveUp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(btnMoveDown, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(jLabel5)
                                     .add(jLabel4)
@@ -184,15 +202,9 @@ public class ContactManager extends javax.swing.JFrame {
                                     .add(txtCity, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(txtState, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(txtZip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                .add(jLabel2)
-                                .add(59, 59, 59))))
-                    .add(layout.createSequentialGroup()
-                        .add(btnAdd)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 186, Short.MAX_VALUE)
-                        .add(txtPhone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(btnDelete)))
+                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -247,7 +259,9 @@ public class ContactManager extends javax.swing.JFrame {
                     .add(jLabel10)
                     .add(btnAdd))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(btnDelete)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(btnDelete)
+                    .add(btnResetFields))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -269,18 +283,17 @@ public class ContactManager extends javax.swing.JFrame {
 
     private void contactsJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_contactsJListValueChanged
         int selectedIdx = contactsJList.getSelectedIndex();
+        setButtonStates(selectedIdx);
+        
+        
+        //set button states
+        this.btnDelete.setEnabled(selectedIdx >= 0);
+        
+        
         if(selectedIdx < 0) return;
-        
         Contact c = contacts.get(selectedIdx);
+        setContactToFields(c);
         
-        txtLastName.setText(c.getLastName());
-        txtFirstName.setText(c.getFirstName());
-        txtAddress.setText(c.getStreetAddress());
-        txtCity.setText(c.getCity());
-        txtState.setText(c.getState());
-        txtZip.setText(c.getZipCode());
-        txtEmail.setText(c.getEmail());
-        txtPhone.setText(c.getPhone());
     }//GEN-LAST:event_contactsJListValueChanged
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -293,7 +306,7 @@ public class ContactManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int selectedIdx = getSelectedIndex();
+        int selectedIdx = getSelectedIndex(0);
         if(selectedIdx < 0) return;
         Contact c = getContactFromGUI();
         contacts.set(selectedIdx, c);
@@ -302,11 +315,42 @@ public class ContactManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnMoveUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveUpActionPerformed
-        int selectedIdx = getSelectedIndex();
-        if(selectedIdx < 0) return;
+        int selectedIdx = getSelectedIndex(1);
+        if(selectedIdx < 1) return;
+        
+        Contact c = contacts.get(selectedIdx);
+        contacts.set(selectedIdx, contacts.get(selectedIdx-1));
+        contacts.set(selectedIdx-1, c);
+        updateContactsJList();
+        updateContactsFile();
+        contactsJList.setSelectedIndex(selectedIdx-1);
         
     }//GEN-LAST:event_btnMoveUpActionPerformed
 
+    private void btnMoveDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveDownActionPerformed
+        int selectedIdx = getSelectedIndex(0);
+        if(selectedIdx < 0 || selectedIdx >= contacts.size()-1) return;
+        
+        Contact c = contacts.get(selectedIdx);
+        contacts.set(selectedIdx, contacts.get(selectedIdx+1));
+        contacts.set(selectedIdx+1, c);
+        updateContactsJList();
+        updateContactsFile();
+        contactsJList.setSelectedIndex(selectedIdx+1);
+    }//GEN-LAST:event_btnMoveDownActionPerformed
+
+    private void btnResetFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetFieldsActionPerformed
+        setContactToFields(new Contact("","","","","","","",""));
+        contactsJList.clearSelection();
+    }//GEN-LAST:event_btnResetFieldsActionPerformed
+
+    private void setButtonStates(int idx){
+        this.btnDelete.setEnabled(idx >= 0);
+        this.btnUpdate.setEnabled(idx >= 0);
+        this.btnMoveDown.setEnabled(idx >= 0 && idx < contacts.size()-1);
+        this.btnMoveUp.setEnabled(idx >= 1);
+    }
+    
     private Contact getContactFromGUI(){
         return new Contact(
                 this.txtLastName.getText(),
@@ -320,13 +364,24 @@ public class ContactManager extends javax.swing.JFrame {
                 );
     }
     
+    private void setContactToFields(Contact c){
+        txtLastName.setText(c.getLastName());
+        txtFirstName.setText(c.getFirstName());
+        txtAddress.setText(c.getStreetAddress());
+        txtCity.setText(c.getCity());
+        txtState.setText(c.getState());
+        txtZip.setText(c.getZipCode());
+        txtEmail.setText(c.getEmail());
+        txtPhone.setText(c.getPhone());
+    }
+    
     private void updateContactsJList(){
         if(contacts != null && contacts.size() > 0){
             Vector<String> contactsVector = new Vector<String>();
             for (Contact contact : contacts) {
                 contactsVector.add(contact.getLastName() + ", " + contact.getFirstName());
             }
-            this.contactsJList.<String>setListData(contactsVector);
+            this.contactsJList.setListData(contactsVector);
         }
     }
     
@@ -351,10 +406,10 @@ public class ContactManager extends javax.swing.JFrame {
         }
     }
     
-    private int getSelectedIndex(){
+    private int getSelectedIndex(int minIdx){
         int idx = contactsJList.getSelectedIndex();
-        if(idx < 0){
-            JOptionPane.showMessageDialog(null, "No contact selected. Please select a contact.", "Error", JOptionPane.ERROR_MESSAGE);
+        if(idx < minIdx){
+            JOptionPane.showMessageDialog(null, "Invalid contact selection for specified action.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return idx;
     }
@@ -399,6 +454,7 @@ public class ContactManager extends javax.swing.JFrame {
     private javax.swing.JButton btnMoveDown;
     private javax.swing.JButton btnMoveUp;
     private javax.swing.JButton btnReload;
+    private javax.swing.JButton btnResetFields;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JList contactsJList;
     private javax.swing.JLabel jLabel1;

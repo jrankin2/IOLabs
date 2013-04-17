@@ -1,7 +1,5 @@
 package lab4.FileService;
 
-import java.util.List;
-
 /**
  * Extends both encoder and decoder to provide an interface for complete format
  * handling implementations.

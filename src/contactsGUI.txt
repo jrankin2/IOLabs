@@ -1,2 +1,3 @@
-Rankin|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
 Smith|Dan|123 ABC St.|Waukesha|WI|53189|dsmith110@my.wctc.edu|N/A
+Rankin|Joe|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
+Rankin2|Joe2|302 Buena Vista Ave|Waukesha|WI|53188|jrankin312@gmail.com|262-893-5763
